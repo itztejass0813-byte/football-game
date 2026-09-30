@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PageRank FC — Football Intelligence Lab</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+  <div class="noise"></div>
+
+  <!-- HEADER -->
+  <header class="topbar">
+
+    <div class="brand">
+      <div class="brand-ball">⚽</div>
+
+      <div>
+        <div class="eyebrow">
+          FOOTBALL INTELLIGENCE LAB
+        </div>
+
+        <h1>
+          PAGERANK <span>FC</span>
+        </h1>
+      </div>
+    </div>
+
+    <div class="match-meta">
+      <span class="live-dot"></span>
+      <span>LIVE SIMULATION</span>
+      <strong id="minute">00:00</strong>
+    </div>
+
+  </header>
+
+
+  <main class="shell">
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div>
+
+        <div class="kicker">
+          THE RANKING LEAGUE
+        </div>
+
+        <h2>
+          Who controls the <em>network?</em>
+        </h2>
+
+        <p>
+          Every pass is a hyperlink. PageRank follows the passing
+          network to reveal which players are most connected to
+          influential teammates.
+        </p>
+
+      </div>
+
+
+      <div class="scoreboard">
+
+        <div class="team">
+          <span class="crest home">PF</span>
+          <span>PAGE RANK FC</span>
+        </div>
+
+        <strong id="score">0 — 0</strong>
+
+        <div class="team away">
+          <span>NETWORK UNITED</span>
+          <span class="crest away">NU</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MAIN MATCH AREA -->
+    <section class="match-grid">
+
+      <!-- PITCH -->
+      <div class="pitch-wrap">
+
+        <div class="pitch-head">
+
+          <div>
+            <span class="section-label">
+              LIVE TACTICAL MAP
+            </span>
+
+            <h3>
+              Passing Network
+            </h3>
+          </div>
+
+          <div class="legend">
+            <span>
+              <i class="dot influence"></i>
+              influence
+            </span>
+
+            <span>
+              <i class="line-sample"></i>
+              pass
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="pitch" id="pitch">
+
+          <div class="pitch-lines">
+
+            <div class="half-line"></div>
+
+            <div class="center-circle"></div>
+            <div class="center-dot"></div>
+
+            <div class="box left-box"></div>
+            <div class="box right-box"></div>
+
+            <div class="goal left-goal"></div>
+            <div class="goal right-goal"></div>
+
+          </div>
+
+
+          <svg
+            id="network"
+            class="network"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none">
+          </svg>
+
+
+          <div id="ball" class="ball">
+            ⚽
+          </div>
+
+
+          <div id="players"></div>
+
+
+          <div class="pitch-label top">
+            PAGE RANK FC
+          </div>
+
+          <div class="pitch-label bottom">
+            NETWORK UNITED
+          </div>
+
+        </div>
+
+
+        <!-- CONTROLS -->
+        <div class="controls">
+
+          <button class="primary" id="playBtn">
+            ▶ PLAY MATCH
+          </button>
+
+          <button id="attackBtn">
+            ⚡ SIMULATE ATTACK
+          </button>
+
+          <button id="flowBtn">
+            ↗ SHOW PASS FLOW
+          </button>
+
+          <button id="stepBtn">
+            ＋ NEXT MINUTE
+          </button>
+
+          <button class="danger" id="resetBtn">
+            ↻ RESET
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+
+        <!-- RANKINGS -->
+        <div class="panel ranking-panel">
+
+          <div class="panel-title">
+
+            <div>
+
+              <span class="section-label">
+                LIVE ANALYTICS
+              </span>
+
+              <h3>
+                PageRank XI
+              </h3>
+
+            </div>
+
+            <span class="badge" id="roundBadge">
+              ROUND 1
+            </span>
+
+          </div>
+
+          <div id="rankings"></div>
+
+        </div>
+
+
+        <!-- EVENT FEED -->
+        <div class="panel event-panel">
+
+          <div class="panel-title">
+
+            <div>
+
+              <span class="section-label">
+                MATCH CENTRE
+              </span>
+
+              <h3>
+                Event Feed
+              </h3>
+
+            </div>
+
+          </div>
+
+          <div id="feed" class="feed"></div>
+
+        </div>
+
+      </aside>
+
+    </section>
+
+
+    <!-- EDUCATION -->
+    <section class="education">
+
+      <div class="concept">
+
+        <span class="big-number">
+          01
+        </span>
+
+        <div>
+
+          <span class="section-label">
+            THE IDEA
+          </span>
+
+          <h3>
+            A pass transfers influence.
+          </h3>
+
+          <p>
+            If Player A passes to B, part of A's current rank
+            flows to B. A player receiving rank from several
+            important players becomes more influential in
+            the network.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="formula-card">
+
+        <div class="section-label">
+          CORE FORMULA
+        </div>
+
+        <div class="formula">
+          PR(p) =
+          <span>0.15</span>/N +
+          <span>0.85</span> × Σ PR(q)/L(q)
+        </div>
+
+        <p>
+          <b>15%</b> baseline keeps the network connected.
+          <b>85%</b> follows the links.
+        </p>
+
+      </div>
+
+
+      <div class="concept">
+
+        <span class="big-number">
+          02
+        </span>
+
+        <div>
+
+          <span class="section-label">
+            IMPORTANT
+          </span>
+
+          <h3>
+            Influence ≠ "best player".
+          </h3>
+
+          <p>
+            PageRank is a network metric. Goals, tackles,
+            speed and other football skills are different
+            measurements.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- HOW TO PLAY -->
+    <section class="how">
+
+      <div>
+
+        <span class="section-label">
+          HOW TO PLAY
+        </span>
+
+        <h2>
+          Read the match like a data analyst.
+        </h2>
+
+      </div>
+
+
+      <ol>
+
+        <li>
+          <b>Watch the passes.</b>
+          The glowing network shows who feeds whom.
+        </li>
+
+        <li>
+          <b>Run a round.</b>
+          New PageRank values are calculated from
+          the current network.
+        </li>
+
+        <li>
+          <b>Find the influencer.</b>
+          The largest ring and highest bar identify
+          the current network leader.
+        </li>
+
+      </ol>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <span>
+      PageRank FC
+    </span>
+
+    <span>
+      Educational simulation • Built for GitHub
+    </span>
+
+  </footer>
+
+
+  <div id="toast" class="toast"></div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
